@@ -1,0 +1,33 @@
+export declare class Response {
+    headers: any;
+    headersSent: boolean;
+    locals: any;
+    append: any;
+    attachment: any;
+    cookie: any;
+    clearCookie: any;
+    download: any;
+    end: any;
+    format: any;
+    get: any;
+    header: any;
+    json: any;
+    jsonp: any;
+    links: any;
+    location: any;
+    redirect: any;
+    render: any;
+    send: any;
+    sendFile: any;
+    sendStatus: any;
+    set: any;
+    setHeader: any;
+    status: any;
+    type: any;
+    vary: any;
+    constructor();
+    getHeader(key: string): string | void;
+    setHeadersSent(value: boolean): void;
+    setLocals(key: string, value: string): void;
+    resetMocked(): void;
+}
