@@ -60,7 +60,7 @@ export default class UsersDAO {
       // Insert a user with the "name", "email", and "password" fields.
       // TODO Ticket: Durable Writes
       // Use a more durable Write Concern for this operation.
-      await users.insertOne({"name": userInfo.name, "email": userInfo.email, "password": userInfo.password })
+      await users.insertOne({ "name": userInfo.name, "email": userInfo.email, "password": userInfo.password })
       return { success: true }
     } catch (e) {
       if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
@@ -103,7 +103,7 @@ export default class UsersDAO {
     try {
       // TODO Ticket: User Management
       // Delete the document in the `sessions` collection matching the email.
-      await sessions.deleteOne({  "email": email })
+      await sessions.deleteOne({ 'user_id': email })
       return { success: true }
     } catch (e) {
       console.error(`Error occurred while logging out user, ${e}`)
@@ -121,7 +121,7 @@ export default class UsersDAO {
     try {
       // TODO Ticket: User Management
       // Retrieve the session document corresponding with the user's email.
-      return sessions.findOne({  "email": email  })
+      return sessions.findOne({ "user_id": email})
     } catch (e) {
       console.error(`Error occurred while retrieving user session, ${e}`)
       return null
@@ -170,7 +170,7 @@ export default class UsersDAO {
       // TODO Ticket: User Preferences
       // Use the data in "preferences" to update the user's preferences.
       const updateResponse = await users.updateOne(
-        { email: email  },
+        { email: email },
         { $set: { preferences: preferences } },
       )
 
